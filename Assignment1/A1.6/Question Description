@@ -1,0 +1,10 @@
+Endianness.java contains the skeleton of an executable Java class in the file Endianness.java. 
+Place this file directory on a UNIX machine (e.g., one of the lab machines, a Mac, or Windows running Cygwin/WSL) and compile it from the UNIX command line like this:
+javac Endianness.java
+
+You can now run this program from the command line. The program takes four command-line arguments. 
+These arguments are the values of four consecutive bytes (in hex) of memory from which the program will construct both big-endian and the little-endian integers. 
+For example, to see the value of the integer whose byte values are 0x01, 0x02, 0x03, and 0x04, in that order, you would type:
+java Endianness 01 02 03 04
+
+Write the code that transforms this memory into integers by replacing the TODO's with an implementation of bigEndianValue and littleEndianValue.
