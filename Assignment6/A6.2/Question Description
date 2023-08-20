@@ -1,0 +1,1 @@
+Translate q2.c into commented assembly code, placing your code in a file named q2.s. Labels for global variables should be the name of the variable. Run your code in the simulator and examine every variable to be sure they have the correct value when execution halts.
