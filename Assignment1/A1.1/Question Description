@@ -1,0 +1,15 @@
+You can get a UNIX Command Line (i.e., a shell) in one of the following ways:
+
+You can login to one of the department server machines directly in the lab or remotely from your own machine. To do this from the Mac use ssh. To do this from Windows, install and run PuTTY or XShell.
+If you run Mac or Linux you can get a shell directly on your computer via the built-in terminal app.
+If you run a recent version of Windows 10, you can install the Windows Subsystem for Linux (WSL, aka Bash on Windows), which provides a usable Linux environment with a shell.
+If you're on a previous version of Windows, you can install Cygwin, which emulates Linux to some degree, but this is not a recommended configuration.
+You'll also need to install the Java JDK. This is preinstalled on the department servers, but on your own machine you might need to download and install it from Oracle’s website, or using your system package manager.
+
+Pick your environment. Then do the following.
+
+Create a file called HelloWorld.java and edit it so that it will print "Hello World" when it runs. You'll do this by creating a static method called main that prints that string.
+Compile this class from the command line using the javac command.
+Run this class from the command line using the java command.
+Once you are confident that your program runs as expected, submit the HelloWorld.java file below. 
+The main goal in this question is to help you understand how to submit your code, and what to expect from the interface once you submit code.
