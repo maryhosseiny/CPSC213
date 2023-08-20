@@ -1,0 +1,11 @@
+java Endianness 00 00 00 00  base case 0
+java Endianness ff ff ff ff  largest hex number case
+java Endianness 00 00 00 80  Edge case, big endian is 128 and little endian is -2147483648 - Positive Negative
+java Endianness 00 00 80 00  Edge case, big endian is 32768 and little endian is 8388608 - Positive Positive
+java Endianness 00 80 00 00  Edge case, big endian is 8388608 and little endian is 32768 - Positive Positive
+java Endianness 80 00 00 00  Edge case, big endian is -2147483648 and little endian is 128 - Negative Positive
+java Endianness 7f ff ff ff  big endian is largest possible value
+java Endianness 8f ff ff 8f  Equal case, big endian and little endian are equal
+java Endianness 01 00 00 00  Edge case, big endian is 1677216 and little endian is 1
+java Endianness 00 00 00 01  Edge case, big endian is 1 and little endian is 16777216
+java Endianness 01 02 03 04  Midrange case, big endian is 16909060 and little endian is 67305985
