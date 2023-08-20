@@ -1,0 +1,3 @@
+Test your program carefully by calling it from the command line with various memory values. 
+Ensure that your tests provide good coverage and be sure to include some tests with bytes that have bit-eight set to 1 (e.g., 0xff or 0x80). 
+List and carefully describe each of the tests you perform in the text below. Your mark here will be based the list of tests you ran and the description you provide.
