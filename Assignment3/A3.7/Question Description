@@ -1,0 +1,4 @@
+In the previous question you created a program called bubble_sort_dynamic.c that reads an unlimited number of elements from the command-line arguments and sorts them using the Bubble-Sort algorithm.
+
+Now, create another C program called bubble_sort_awesome.c that extends your earlier work. This program must not include any square brackets anywhere (including comments!). 
+All access to the arrays must be made using pointer arithmetic and the dereference operator (i.e., *).
