@@ -1,0 +1,4 @@
+Implement the following C program in assembly, again using your previous work as a guide. Place your code in a file named calc.s. 
+Again, skip the procedure itself; just show the code inside of the procedure. Write, run, and test your program.
+
+e, i, y, and o must all be global variables in your implementation.
