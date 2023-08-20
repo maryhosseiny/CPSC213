@@ -1,0 +1,5 @@
+In the previous question you were presented with the program bubble_sort_static.c that reads four elements from the command-line arguments and sorts them using the Bubble-Sort algorithm.
+Create a new C program named bubble_sort_dynamic.c that removes the static-array limitation of the original version. 
+The only change you need to make is to turn val into a dynamic array and to allow the program to sort arbitrary lists of integers provided on the command line (e.g. more than 4).
+
+Recall that you need to allocate dynamic arrays dynamically by calling the procedure malloc. For example to allocate an array of 10 shorts you say: short *s = malloc (10 * sizeof(*s));
