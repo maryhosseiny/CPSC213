@@ -1,0 +1,11 @@
+Like a real processor, the simulator has a memory and a CPU. You will implement both of them as java classes. This week you will implement the memory.
+
+Some portions of the memory are already implemented. Your job is to implement and test the five methods of MainMemory.java labeled with TODO’s. 
+You will find this file in your IntelliJ environment in the arch.sm213.machine.student package. (Please refer to Question 2 "Install the Simple Machine" for the package.)
+
+Implement the following methods:
+
+- isAccessAligned that determines whether an address is aligned.
+- bytestoInteger and integerToBytes that translate between an array of bytes and a big endian integer.
+- get and set that provide array-of-byte access to memory used by the CPU to fetch and to store data. Follow the specification listed in the javadoc comments carefully. 
+Note, for example, that the address provided to these methods is not required to be aligned.
