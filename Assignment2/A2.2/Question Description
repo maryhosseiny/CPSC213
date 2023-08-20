@@ -1,0 +1,5 @@
+Using S1-global-static.s as a guide (see instructions in the previous question), implement the following C program in assembly and place the code in a file named swap.s.
+
+Your program should thus just do two things: (1) allocate the global variables and (2) swap the two array elements. 
+If you'd like, you can avoid using memory for the variable s by just using a register in place of the variable. Load your program into the simulator. 
+Assign different values to the two elements of array and run the program to confirm that it works.
