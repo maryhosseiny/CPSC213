@@ -1,0 +1,3 @@
+Implement the following C program in assembly, using your previous work as a guide. Place your code in a file named math.s.
+
+Both d and t must be global variables in memory and the variable d must store the correct value when the execution completes; that's what we'll check to determine if your code works.
