@@ -1,0 +1,4 @@
+Create a set of JUnit tests to test your implementation. 
+Place all of your tests in a class named MainMemoryTest in the same package as the MainMemory class. 
+Note that you will not actually be able to run the simulator itself yet beyond the initial screen, because you will still lack a CPU implementation.
+Ensure that your tests provide good test coverage for each of five methods you implemented. Comment each test to explain what it is testing.
