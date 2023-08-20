@@ -1,0 +1,24 @@
+In this question you will continue implementing the SM213 simulator. 
+You may use the same IntelliJ project as Assignment 1, or you may download it again here: sm-student-213-intellij.zip. 
+Note that the code above assumes you have implemented MainMemory.java in assignment 1, so if you haven't completed it, you may be unable to test it locally.
+
+Modify the execute() method in CPU.java to replace every "TODO" flag with the appropriate code. 
+Each step of the processor (i.e,. cycle) has two stages: fetch and execute. 
+The first stage fetches the next instruction from memory and loads it into the special-purpose register named ins. The second stage executes the instruction. 
+For convenience, the fetch stage places the various parts of the instruction into the following special-purpose registers:
+
+insOpCode, insOp0, insOp1, insOp2, insOpImm, insOpExt
+
+The execute stage uses these values plus the general-purpose register file, reg, and main memory, mem, to perform the instruction's specified computation.
+
+You can find semantic RTL descriptions of the SM213 instructions in the appendix of the Lecture Notes Companion (which is also available on Canvas). 
+These will help you understand exactly what each instruction should do.
+To test your implementation of an instruction, execute some code in the simulator (the version compiled from your code) using that instruction. 
+Then, manually examine the register and memory contents to ensure it worked.
+
+You can set breakpoints in the Java code to examine the values of variables while the simulator is running.
+You can set breakpoints in the assembly code by clicking the small box next to an instruction, turning it red.
+The lower left panel of the simulator shows the values of the CPU's special-purpose registers.
+The code you downloaded in the first question of this assignment includes a file named test.s that you can use to test the instructions you implement. 
+Each test starts with a label that identifies the instruction it tests and ends with a halt instruction that stops the simulation. 
+To test an instruction, click on its label in the simulator and then click "Run" or "Step".
