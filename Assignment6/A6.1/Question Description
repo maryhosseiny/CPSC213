@@ -1,0 +1,4 @@
+In this part, you will be implementing the rest of the SM213 ISA, consisting of instructions that control the flow of execution. You may use the version you implemented yourself for Assignment 2 as a starting point, or you may use the file provided here. The instructions you need to implement are marked with TODOs in the provided file.
+
+CPU.java
+The six instructions you must implement are branch, branch if equal, branch if greater, jump, get PC, and indirect jump. Their format and semantics are listed on the slides, as well as in the table below. Note that the indirect-jump offset is unsigned and so for indirect jump, pp ranges from 0 to 255. On the other hand, the branch pc-relative value is signed and so for branches, pp ranges from -128 to 127.
