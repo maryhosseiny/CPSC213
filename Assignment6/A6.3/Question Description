@@ -1,0 +1,48 @@
+Implement an assembly-language program that examines a list of student grades and finds the student with the median average grade; this student’s id should be placed in the variable m.
+
+Your program must correspond to a C program where the input list of students, and the output student id are given as follows.
+
+Your assembly file must format student records exactly as C would; i.e., a struct with 6 integers. You must use the following assembly declarations for this input and output data.
+
+Note: this example is for an array with one student. You should obviously test your code on larger arrays.
+
+Note that the code uses the label base as the base of the array to simplify the assignment of values to s; you may assign this label to s, but your code must not use this label in its implementation. You must use s as the pointer variable that contains the base address of the array. The autograder assigns ("allocates") a different base address to s, so your code must be ready to handle that.
+
+Put your solution in a file named q3.s.
+
+This is a very challenging programming problem. It will stretch (and strengthen) your ability manage a large number of programming details, as is required when writing assembly. To be successful with this you must be very disciplined to program and test incrementally.
+
+Observe that the program breaks down into several subproblems. You should tackle them one at a time and thoroughly test each step before moving to the next.
+
+Here’s a list of the key subproblems. You might want to further sub-divide things, but do not try to combine steps.
+
+1. Compute the average grade for a single student and store it in the struct. For simplicity, you can ignore the fractional part of the average; i.e., you do not need to round.
+2. Iterate through the list of students and compute their average grades and store them.
+3. Swap the position of two adjacent students in the list.
+4. Compare the average grades of two adjacent students and swap their position conditionally, using your code from Step 3.
+5. Now, optionally, consider creating a procedure to encapsulate either Step 3 or Step 4 as described in the Use Procedures section below.
+6. Sort the list by average grade in ascending order. You are free to use any sort algorithm you like, but Bubble Sort is the simplest. Here’s a version of bubble (sinking) sort in C that you might consider.
+Take this step by step and incorporate your work from Step 3-5 above. For Bubble Sort, here are two subproblems.
+First, write a loop that iterates through the list once, bubbling the student with the lowest average to the top (or sinking the lowest student to the bottom). If you created a procedure in Step 5, then the inner part of this loop is a call to this procedure; otherwise it is the code from Step 4.
+Then, add the outer loop that repeats the inner loop on the unsorted sublist repeatedly until the entire list is sorted.
+7. Find the median entry in the sorted list and store that student’s sid in m. For simplicity you can assume the list contains an odd number of students.
+
+Notice that it is not necessary to do these steps in the order listed above. Steps 1 and 2, for example, are completely independent from Steps 3-7. Step 7 is independent from the other steps. You could do Step 6 before Steps 3-5 and then incorporate the conditional swap once the other parts of Step 6 are working. Similarly, you can do Step 5 before Steps 3 or 4 and incorporate them into the procedure later. The key thing here is work on each piece independently and then careful combine steps to eventually produce the program. The program itself will be on the order of 70 to 100 assembly-language instructions. That sounds like a lot ... and it is. But if you think of this as seven steps each with 15 or so instructions (some will have less), its not so bad. Or maybe it will be bad, but at least not impossible.
+
+Be sure to comment every line of your code and to separate subproblems with comments and labels so that it is easy for you to see what each part of the code does without having to read the code.
+
+You will have noticed that the variable s is a dynamic array of type struct Student and that sizeof(struct Student) is 24. And so you might find that you’d like to multiply or divide by 24 (i.e., to convert between an array index and a byte-offset), but you’ll recall that you can’t do this with a single instruction in our ISA. Then you’ll notice that x*24 = x*16 + x*8 and you’ll see that you can multiple by 24 (or divide) using 3 instructions (or 4 depending on how you count).
+
+Keeping track of registers is going to be a challenge. Note that this program is too big for you to use a distinct register for every value in the program. You are going to have to re-use registers to store different things in different parts of the program.
+
+This will add complexity, for example, when combining two steps or when adding a step to the rest of the program. For example, if your code for Step 4 uses register r0 and one of the loops you write in Step 6 also uses r0, you’re going to have to change one of them to use a different register (or use a procedure as described in the next section). So, for parts of the code that connect like this, some pre-planning will help.
+
+Another useful strategy is to group sections of code (one or maybe a few steps) and treat them as independent stages with respect to registers. At the beginning of a stage you assume nothing about the current value of registers and you are free to use any registers you like within that stage. At the end of the stage, any register values that are needed by subsequent stages should be written to memory. You may want to create some additional variables to store these temporary values.
+
+One way to divide code into stages is to use procedures. Step 5 suggests that you do this to encapsulate the code that conditionally swaps two adjacent elements of the list (i.e., Steps 3 and 4). You can use this approach to simplify register management by having the procedure save registers to memory before it starts and restore them from memory before it returns (e.g., using temporary variables). Any register the procedure saves in this way is a register it is free to use without interfering with the registers used in the two loops in Step 6 that call it.
+
+This swap procedure needs one argument / parameter: i.e., the index of one of the array elements to swap. The index of the other element is this value plus or minus one, depending on how you do it. The caller should pass this value in a register; for example if the loop has the index in r4 then the procedure should just use r4 to get this value.
+
+Use gpc and j to call the procedure and use the indirect jump to return. Do not worry about creating a stack.
+
+All of this is optional, and you can do this for other parts of your program as well.
