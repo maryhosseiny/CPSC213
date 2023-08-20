@@ -1,0 +1,9 @@
+Produce your own sm213 file, q1.s, that does what the highlighted lines in q1.c does; you do not need to translate the lines that are marked as ignored.
+
+Note that you can run the C program, specifying input values on the command line to see what the program should do.
+In the simulator you will enter the inputs directly in the memory locations of variables, and you will examine the output the same way.
+
+For example, to compile a C program named foo.c from the command line, you would type the following: gcc -std=gnu11 -o foo foo.c
+Note that -std=gnu11 selects the common gnu 11 dialect of C and that 11 is the number 11, not two lowercase L's.
+
+And then to run the resulting executable you would type the following: ./foo
