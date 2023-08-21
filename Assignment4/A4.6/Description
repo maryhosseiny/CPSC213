@@ -1,0 +1,4 @@
+With an idea of why it isn't working, you should be able to propose a fix to the program. 
+Change the erroneous line of code to make the program work as expected. Hint: you only need to change a single line.
+
+Produce a fixed version of the code which compiles, runs, and successfully outputs what you expected it to output in the first part of this set of questions. Submit this change below.
