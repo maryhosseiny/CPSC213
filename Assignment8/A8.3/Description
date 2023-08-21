@@ -1,0 +1,12 @@
+Under the q3 directory you will also find a file called sortmain.c. 
+You should implement this program such that it sorts the arguments as elements, placing the integers first (as compare would do). 
+You must use the C function qsort to do so. qsort is a built-in C function which sorts an array, given a suitable comparison function. 
+You should use it to sort a dynamic array of element pointers, by giving it a comparison function that calls the element’s virtual compare function. 
+You may need to do some pointer casting to make it all work out.
+
+You do not have to have implemented int_element and str_element to do this part; 
+the autograder will use fully-implemented versions of the int_element and str_element classes to test your code. 
+As usual, you must ensure that your code is free of memory errors and leaks using valgrind.
+
+Comment: In normal sort implementations, comparisons between mixed types would not be allowed, as comparisons between multiple different types aren’t usually defined (is a struct less than a string? How about an int?). 
+However, for this problem, since we have only two types we can declare that “integers are smaller than strings”.
