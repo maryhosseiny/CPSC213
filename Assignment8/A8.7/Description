@@ -1,0 +1,9 @@
+The code below is the same Assembly code found in the previous question. 
+It contains uncommented assembly code that corresponds to a single C procedure starting at address 0x300 and another procedure that sets up the stack and calls the first procedure.
+
+Write an equivalent C program that is a likely candidate for the program the compiler used to generate this assembly file (with the exception of the stack-setup code, which is only for the Assembly file). 
+Call this program q2.c.
+
+For your solution to pass the handin tests it must declare a procedure named q2 that encapsulates the code starting at address 0x300, that has the appropriate number of arguments (in the correct order), 
+and that returns the appropriate value. 
+To test your code, you can include a main procedure and any other procedures you like, though note that the autograder will ignore any method other than q2.
