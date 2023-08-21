@@ -1,0 +1,13 @@
+Modify the program q3.c in a10.zip (see Question 1) to use a mutex and zero or more condition variables so that every thread prints a before any thread prints b. 
+This type of synchronization is called a barrier and we say that threads all rendezvous at the barrier before any are allowed to continue past it.
+
+Your solution must block any threads that cannot run while they wait for the other threads. You may not use a polling loop nor call uthread_yield.
+
+Your solution must work for any value of NUM_THREADS. For example, for 3 threads your program must always output the following.
+a
+a
+a
+b
+b
+b
+------
