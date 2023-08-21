@@ -1,0 +1,21 @@
+In this final step you will implement a program that goes on a treasure hunt through the disk. 
+The program's command-line argument is the block number where the hunt will start. In the first step of the hunt, you must read the value of this block. 
+This first value will tell you two things:
+
+1. The number of additional steps to perform.
+2. The address of the next block to read.
+
+In each subsequent step the block value that is read gives you the block number of the next block to read (it does not affect the number of blocks anymore). 
+Print out the value of the last block you read. For example if you type this: ./treasureHunt 27
+
+You should read block 27 first. Let's assume that the value of block 27 is 7. If so, you should read 7 more blocks, starting with block number 7. 
+If the value of block 7 is 18, then the third block you will read is 18, an so on. Note that in total, in this example, you will have read 8 blocks (block 27, plus 7 additional blocks).
+The code pack includes the starter file for treasureHunt.c. Work incrementally. 
+You can use aRead as a guide to get started. A good first step would be to read the value of the initial block and print it. 
+Then a good second step would be to read the second block and print its value. Now think about adding the counter argument to the callback (that's what arg is for) and counting down. 
+Finally, be sure that you only print the value of the last block and that your program terminates when it's done.
+
+Note that in this case the main thread uses an infinite loop to keep it from leaving once the first request has been sent. 
+It is your responsibility to then exit the program once you have identified that all required tasks have completed. You may do that by one of the following ways:
+1. Call exit(EXIT_SUCCESS); once the program has completed all its tasks; or
+2. Create a variable that is modified once all tasks are completed, and change the main function's final loop to a polling loop that checks this variable.
