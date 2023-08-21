@@ -1,0 +1,43 @@
+Implement this code in SM213 assembly by following these steps:
+
+1. Create a new SM213 assembly code file called q3.s with three sections, each with its own .pos: one for code, one for the static data, and one for the "heap". For example:
+.pos 0x1000
+code:
+.pos 0x2000
+static:
+.pos 0x3000
+heap:
+
+2. Using labels and .long directives allocate the variables i, v0, v1, v2, v3, and s in the static data section. 
+Note the variable s is a “struct S” and so to allocate space for it here you need to understand how big it its. 
+This section of your file should look something like this (the ellipsis indicates more lines like the previous one):
+.pos 0x2000
+static:
+i:      .long 0
+v0:     .long 0
+v1:     .long 0
+v2:     .long 0
+v3:     .long 0
+s:      .long 0
+
+In order for the autograder to recognize your solution you must use variable names for the labels. 
+You are strongly encouraged to add comments to the lines above indicating what each of these values represent, particularly for the s struct.
+
+Now initialize the variables containing pointers accessed by the code (s.y, s.z, s.z->z, and s.z->z->y) to point to locations in "heap", as if malloc had been called for each of them. 
+For each y array, allocate two integers. In essence, you want to create a snapshot of what memory would look like after the program has executed these statements:
+s.y       = malloc(2 * sizeof(int));
+s.z       = malloc(sizeof(struct S));
+s.z->z    = malloc(sizeof(struct S));
+s.z->z->y = malloc(2 * sizeof(int));
+You may assign labels to each of these locations. For example, after the first malloc runs, maybe the memory looks like this:
+s:      .long 0     # x[0]
+        .long 0     # x[1]
+        .long s_y   # y
+
+heap:
+s_y:    .long 0     #s.y[0]
+        .long 0     #s.y[1]
+
+4. Implement the four statements of the procedure foo (not any other part of the procedure) in SM213 assembly in the code section of your file. 
+Comment every line carefully. NOTE: you cannot use any dynamically computed addresses as constants in your code. 
+So, for example, you cannot use the labels s_y, s_z, etc. in your code. The only labels your code should use are the ones assigned to the global variables above: i, v0, v1, v2, v3 and s.
