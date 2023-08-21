@@ -1,0 +1,70 @@
+The cigarette smokers problem is a classic synchronization problem, posed by Suhas Patil in 1971. In this problem there are four actors, each represented by a thread, and three resources required to construct and smoke a cigarette: tobacco, paper, and matches. 
+One of the actors is the agent and the other three are smokers. The agent has an infinite supply of all of the resources. 
+Each smoker has an infinite supply of one resource and nothing else; each smoker possesses a different resource.
+
+The three smoker threads loop attempting to smoke, which requires that they obtain one unit of both of the resources they do not possess. 
+The agent loops repeatedly, randomly choosing two ingredients to make available to smokers. 
+Each time the agent does this, one of the three smokers should be able to achieve its health-destroying goal. 
+For example, if the agent chose paper and matches, then the tobacco-possessing smoker can consume these two items, combined with its own supply of tobacco, to smoke.
+
+This is a simple model of a general resource-management problem that operating systems deal with in many forms. 
+To ensure that it captures that real problem correctly, the agent has a few additional constraints placed on it. 
+The agent is only allowed to communicate by signalling the availability of a resource using a condition variable. 
+It is not permitted to disclose resource availability in any other way; i.e., smokers can not ask the agent what is available. 
+In addition, the agent is not permitted to know anything about the resource needs of smokers; i.e., the agent can not wake up a smoker directly.
+
+Finally, each time the agent makes two resources available, it must wait on a condition variable for a smoker to smoke before it can make any additional resources available. 
+The problem is tricky because when the agent makes two items available, every smoker thread can use one of them, but only one can use both. 
+If you aren't careful, you might create a solution that results in deadlock. 
+For example, if the agent makes paper and matches available, both the paper and the matches smokers want one of these, but neither will be able to smoke because neither has tobacco. 
+But, if either of them does wake up and consume a resource, that will prevent the tobacco thread from being able to smoke and thus also prevent the agent from waking up to deliver additional resources. 
+If this happens, the system is deadlocked; no thread will be able to make further progress.
+
+Requirements:
+Implement a deadlock-free solution to the cigarette smokers problem in a C program called smoke.c; start from the file provided in the assessment overview. 
+Initially you may use uthreads set to use a single processor, but your final code must work with any number of processors. 
+Create four threads: one for the agent and one for each type of smoker. The agent thread should loop through a set of iterations. 
+In each iteration it chooses two resources randomly, signals the condition variables associated to those resources, and then waits on a condition variable that smokers signal when they are able to smoke. 
+When smoker threads are unable to run they must be waiting on a condition variable. When a smoker wakes up to find both of the resources it needs, it signals the agent and goes back to waiting for the next chance to smoke.
+
+The agent must use exactly four condition variables: one for each resource and one to wait for smokers. 
+The agent must indicate that a resource is available by calling signal on that resource's condition variables exactly once. 
+There is no other way for any other part of the system to know which resources are currently available. The code for the agent is provided for you. 
+You do not need to change this code, but if you do, you must make sure you follow the rules we have just outlined.
+
+You may find it useful to create other threads and add additional condition variables. 
+It is perfectly fine to do so as long as you follow the constraints imposed on the agent thread. 
+For example, notice that we have not said how the smokers wait other than to say that they wait on some condition variable.
+
+Testing:
+Given the nature of this problem, testing with gdb becomes harder, so you are encouraged to test with debugging messages instead. 
+The most common problem with attempts to solve this problem is deadlock. 
+The simplest way to diagnose this problem initially is to use printf statements in the agent and smokers that tell you what each is doing. 
+A printf just before and just after every statement that could block (e.g., every wait and every lock) is probably a good idea. 
+If the printing stops before the program does, you have a deadlock and the last few strings printed should tell you where.
+
+Start with one iteration of the agent. 
+Get that to work, then try more than one. Be sure that the strings you print with printf end with a new line character (i.e., "\n"), because printf does not actually print until it sees this character or the program terminates. 
+If you print without the newline and then your program deadlocks, you will not see the string printed and you will be confused about where the program deadlocked.
+
+Once you think you've got this working, you'll want to remove the debugging messages so that you can drive the problem through a large number of iterations without being bombarded with output. 
+One way to do this is to use the C Preprocessor to surround each of your printf statements with a #ifdef directive like this:
+#ifdef VERBOSE
+printf ("Tobacco smoker is smoking.\n");
+#endif
+
+A better way — though the more you do with macros the trickier it can get — is to define a macro called VERBOSE_PRINT that is a printf if VERBOSE is defined and the empty statement otherwise. 
+The provided code already provides this functionality. You can then use the macro instead of printf for debugging statements, like this:
+VERBOSE_PRINT ("Tobacco smoker is smoking.\n");
+
+In either case you can now selectively define the VERBOSE macro when you compile your program to turn diagnostic printf's on or off. 
+To turn them on (the program now prints all of the debugging statements):
+CFLAGS="-D VERBOSE" make smoke
+
+To turn them off (the program now prints no debugging statements):
+make smoke
+
+You may need to use make clean between the calls above if you haven't modified the C files.
+Test your program by driving the agent through a large set of iterations. 
+Instrument the agent to count the expected times each smokers should smoke and instrument each smoker to count the number of times that each does smoke. 
+Compare these to ensure they match and print them when the program terminates.
