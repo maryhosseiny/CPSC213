@@ -1,0 +1,22 @@
+Now open the new file tRead.c in an editor and examine it carefully. 
+The goal in this new version is to read and handle disk blocks sequentially in a manner similar to sRead but to do so using threads to get performance similar to aRead.
+
+To do this, you will need to create multiple threads, so that each thread can allow other threads to run while waiting for disk reads to complete without the negative performance consequences seen in sRead.c. 
+You should create one thread per disk read. 
+Do NOT add any busy loops in your code (loops that just test a condition and burn CPU time).
+
+You can create a new thread for each call to read using
+
+uthread_create(void *(*start_proc)(void *), void *start_arg);
+You will need to join with a thread (i.e, uthread_join(t)) if you want to wait until the thread completes. 
+You will need to do this in main, because when main returns the program will terminate, even if there are other threads running. 
+This will replace the polling loop used in aRead. That said, make sure that you call uthread_join(t) in a manner that allows multiple threads to run in parallel, that is, do not call uthread_join(t) immediately after creating each thread; 
+instead join the threads after all of them have been created.
+
+A thread can block itself at any time by calling uthread_block(). Another thread can wake up a blocked thread t by calling uthread_unblock(t). 
+You will need to block threads after they call disk_schedule_read; the thread will need to be unblocked when the disk read on which it is waiting has completed. 
+Also recall that a thread can obtain its own identity (e.g., to identify the thread associated to a specific read) by calling uthread_self().
+
+Note that the uthread data structure has been initialized to use a single CPU (you can see that in the argument to uthread_init(1)). 
+This initialization is in place so you don't need to worry about synchronization in this assignment. Note that using more than one CPU could cause multiple threads to update global variables concurrently, 
+which could end up with a race condition. Using a single CPU ensures that thread switches only happen explicitly through yields, blocks, or other similar events.
