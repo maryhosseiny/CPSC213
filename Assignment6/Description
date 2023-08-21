@@ -1,0 +1,5 @@
+In this assignment you will extend the SM213 implementation to support static control flow, including static procedure calls and procedure return (which is dynamic, actually), how to include static control flow in assembly, and how programs use the runtime stack to store local variables, arguments and the return address.
+You will:
+1. Extend the SM213 implementation to add the instructions we have discussed in class
+2. Translate a simple C file containing for-loops and if-statements into assembly
+3. Write a fairly substantial assembly-language program that uses all of the language concepts we have discussed so far
