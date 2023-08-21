@@ -1,0 +1,11 @@
+This assignment is about asynchronous programming and threads. 
+You will be given a C file that models a simplified disk with asynchronous read operations, simulated DMA, and interrupts. 
+You will also be given four programs that perform a sequence of disk reads in different ways.
+
+For this assignment:
+
+1. The first of these programs is completely implemented. It access the disk sequentially, waiting for each request to finish before moving on.
+2. The next program is partly implemented, with the rest left to you. It improves on the sequential version using asynchronous, event-driven programming. 
+You will gain some experience with this style of programming and then compare the runtime performance of the two alternatives.
+3. The next program is also partly implemented. It uses threads to turn the asynchronous operations into synchronous ones, allowing you to write code like the synchronous program and get performance like the asynchronous one.
+4. The final program goes back to the asynchronous model for a more interesting challenge.
