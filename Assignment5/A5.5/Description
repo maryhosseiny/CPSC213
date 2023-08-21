@@ -1,0 +1,45 @@
+High-Level View
+The overall goal is to arrive at a simple, yet functional implementation. Real memory allocators deal with issues like fragmentation and efficient allocation in more complex ways than you will.
+Your main goal is to ensure (a) that every active allocation is located in its own, distinct location in memory, and (b) that freed memory can be reused whenever needed in subsequent calls to malloc.
+At any given time, some parts of the Heap are allocated and some parts are free. An allocation carves off a specified number of bytes from the free part of the Heap. 
+When a block is later deallocated, it is returned to the free part of the Heap.
+As shown below, heap blocks include header and footer meta data, each 8-bytes. A malloc of 32 bytes, for example, actually requires 48 bytes in total: payload plus the header and footer.
+The header and the footer store the byte size of the full block (payload plus meta data). 
+Free and allocated blocks are distingused by the value of the least-significant bit of the header and footer; a 1 indicates that the block is allocated (i.e., in used) and a 0 that it is free.
+Note also that every block's payload, header and footer must all be aligned to a 8-byte boundary.
+
+Finding a Free Blocks
+A call to malloc requires finding a free block big enough to store the requested number of bytes (plus meta data). 
+The Heap stores the address of the first free block, so you can start there. If that block isn't big enough, you must now check the next block.
+To move from one block to the next, you read the block's size (from its header or footer) and add that number to its address (or subtract if you're going backward). 
+Then you check to see whether that block is free or allocated and move to the next block if necessary; and so on. 
+When adding the size to the address, be sure to mask off that low-order bit (that indiates whether the block is free or allocated).
+
+When you arrive at a free block that is larger than needed, you have a choice. 
+You can use that block or keep looking for a better fit; i.e., you pursue either the first fit or the best fit block. 
+The ideal best fit is the smallest block that satisfies the request. The tradeoff between these two stratgies pits allocation-time against fragementation. 
+First fit is faster, but best fit leads to less fragmentation of the Heap. It's your choice.
+
+There are occasions when the selected block is significantly larger than requested. In this case, it is possible to split a block into two blocks. 
+So, for example, if a 128-byte block is found, but only 32 bytes are needed, the block can be split into an initial 32-byte block (which is used by malloc), and a second 96-byte block (which is kept for future use). 
+Similarly, when a block is freed, and its neighbouring block is also free, these blocks can be "coalesced", i.e., they can be combined into a single larger free block.
+
+Per-Procedure Instructions
+You must implement five procedures; two public procedures and three helpers. The rest of the code is provided for you.
+1. void *myheap_malloc(struct myheap *h, unsigned int user_size);
+Allocate a block with payload of user_size bytes from Heap h and return a pointer to the payload.
+
+2. void myheap_free(struct myheap *h, void *payload);  
+Free the block with the specified payload address in Heap h.
+
+3. int get_size_to_allocate(int user_size);  
+Return the block size required to store a payload of user_size bytes, taking into account alignment constrains and the size of the meta data.
+
+4. void *coalesce(struct myheap *h, void *first_block_start);
+Coalesce free space for single block pair by joining first_block_start and its consecutive next block if and only if both blocks are free and first_block_start has a next block in the heap.
+
+5. void *split_and_mark_used(struct myheap *h, void *block_start, int needed_size);
+Check to see if the block block_start can be split. 
+It can split if the left over bytes after the split (current block size minus needed_size) is enough for a new block, i.e., there is enough space left over for a header, trailer and some payload (i.e., at least 3 times HEADER_SIZE).
+If it can be split, split the block in two and mark the first as in use, the second as free. Otherwise mark the entire block as in use.
+Return a pointer to payload of the alloced block.
