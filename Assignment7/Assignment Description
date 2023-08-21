@@ -1,0 +1,7 @@
+This assignment is about dynamic flow control, in the context of function pointers and switch statements.
+
+First you will extend a C program that uses Java-style polymorphism, but implemented explicitly using C function pointers as we have discussed in class.Then, you will create some Racket-like primitives in C. You will start with a provided implementation of a dynamically expandable list that knows its length. Its like a list in Racket (or Java), and unlike arrays in C that are fixed size and do not know how big they are intrinsically. You will implement several functions that operate on lists using abstraction functions (i.e., C function pointers). You will test your program using a provided test file. Finally, you will implement your own program that uses this list code.
+
+Then you will move to switch statements. First you will examine the snippet we looked at in class that gives you an example of a switch statement that is implemented by a jump table. Next, you will examine a mystery assembly program to determine what it does.
+
+Finally you will convert a C program that contains switch statements into one that uses only goto's and a jump table, instead of switch statements. To make things interesting, this program is a C version of the Java Simple Machine simulator that you used in Assignments 1-7.
