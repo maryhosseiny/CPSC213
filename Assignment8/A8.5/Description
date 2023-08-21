@@ -23,3 +23,29 @@ Take each step one at a time. Implement a step and then test it by using list_fo
 however, before you handin your solution; the only prints allowed in the final version are those specified in Steps 7 through 9). 
 For string processing, you may use any standard library function that starts with str, for instance, strcpy, strncpy, strcmp, strdup, strcat, strtol, etc., 
 so you should not require any explicit loops to handle strings.
+
+1. Read a list of strings from the command line and add them to a list. Note that argv is an array of the command line arguments and argc is the length of that array. 
+Ignore argv[0] since that is the path to the program itself. Some past assignments have already handled this, so you should be able to refer to those.
+2. Map over the list to produce a new list of numbers (the list must actually be a list of pointers to integers) that processes each string to determine if it is a number. 
+If it is, the corresponding value in this new list should be that number, otherwise it should be -1. Use the standard-C library procedure strtol to convert strings to numbers. 
+You may refer to your code in assignment 7 to help you with this step.
+3. Map over the new list of numbers and the original list of strings together to produce a new list of strings with a NULL value for every string that is a number 
+(i.e., where the number list is not -1).
+4. Filter the number list to produce a new list with all negative values removed.
+5. Filter the string list to produce a new list with all NULLs removed.
+6. Produce yet another list of strings that uses these two new lists of numbers and strings to truncate strings, on a pairwise basis, 
+taking the values in the number list to be the maximum length of the entry in the string list. Recall that strings end with a '\0' (i.e., 0) character. 
+For example if you had these two lists:
+l0 = [4,3,5,2,3]
+l1 = ["apple", "peach", "banana", "grape", "plum"]
+The new list of strings would be
+l2 = ["appl", "pea", "banan", "gr", "plu"]
+
+7. Print this revised list of strings, one string per line. Print nothing else on each line.
+8. Join this list into a single array, separated by spaces and print it on the next line. 
+If there are no input strings (or if all of the lengths are zero) then print the empty string (i.e., a blank line).
+s = "appl pea banan gr plu";
+
+9. Compute the maximum value in the numbers list and print it. Again; print ONLY this number.
+10. Now ensure your program is free of memory leaks by ensuring that everything that was allocated in previous steps is eventually freed. 
+Use list functions to carry this out where appropriate.
