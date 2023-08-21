@@ -1,0 +1,27 @@
+The file BinaryTree.java contains a Java program that implements a simple, binary tree. Examine its code. Compile and run it from the UNIX command line (or in your IDE such as IntelliJ or Eclipse):
+
+javac BinaryTree.java
+java BinaryTree 4 3 2 1
+When the program runs, the command-line arguments (in this case the numbers 4, 3, 2 and 1) are added to the tree and then printed in depth-first order based on their value. You can provide an arbitrary number of values on the command line with any numeric values you like.
+
+The file BinaryTree.c is a skeleton of a C program that is meant to do the same thing. 
+Using the Java program as your guide, implement the C program. The translation is pretty much line for line, translating Java's classes/objects to C's structs.
+
+Note that since C is not object-oriented, C procedures are not invoked on an object (or a struct). 
+Thus, Java instance methods converted to C have an extra argument: a pointer to the object on which the method is invoked in the Java version (i.e., what would be "this" in Java).
+
+Of course, C also doesn't have new; for this you must use malloc. Note that all that malloc does is allocate memory; it does not do the other things a Java constructor does such as initialize instance variables. 
+C also doesn't have "null"; for this you can use NULL or 0.
+Finally, C doesn’t have out.printf, use printf instead. Your goal is to have the C program produce the same exact output as the Java program for any inputs.
+You will also need to provide a Makefile to compile your new C program into the program BinaryTree. You may use the Makefile provided in previous questions as a basis.
+
+You might follow these steps:
+1. Start by defining the Node struct. Note that like a Java class, the struct lists the instance variables stored in a node object; i.e., value, left, and right. 
+Note that in Java left and right are variables that store a reference to a node object. Consult your notes to see how you declare a variable in C that stores a reference to a struct.
+2. Now write the create procedure that calls malloc to create a new struct Node, initializes the values of value, left, and right, and returns a pointer to this new node. 
+Then call this procedure to allocate one node with the value 100 and declare a variable root to point to it.
+3. At this point you have the code that creates a tree with one node. 
+Now write the procedure printInOrder and compile and test your program to print this one node. Do not proceed to the next step until it works.
+4. Now implement insert. You may test it by inserting two child nodes to root: one with value 50 and one with value 150. 
+So, now you have a tree with three nodes. Also review printInOrder so that, when you call printInOrder on root, you should get the output 50 100 150.
+5. At this point you should be ready to complete the implementation of main to insert nodes into the tree with values that come from the command line instead of the hardcoded values 50, 100, and 150. 
