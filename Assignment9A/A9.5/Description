@@ -1,0 +1,5 @@
+Open aRead.c in an editor and examine it carefully. This program is similar to the sRead.c file you worked with in the previous question, but it uses event-driven programming to handle the disk reads asynchronously. That is, each read request registers a completion routine and returns immediately. The completion routines are then called by the disk interrupt service routine when each read completes.
+
+The interrupt_service_routine and some other code is provided. You must implement the handle_read procedure and the code that schedules the reads in main. Note that there is a polling loop at the end of main. This is needed because the program will terminate when main returns even if there are some reads that haven't completed. And, of course, all that will have happened by the time you reach that point of main is that you will have scheduled all of the reads; none of the reads will have completed yet. Note that you will need to ensure that handle_read updates the values required for main to "know" when to proceed with printing the final result.
+
+Compile and test your program and be sure that it produces the same output as sRead.
