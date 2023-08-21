@@ -1,0 +1,36 @@
+The file sm.c is a simplified C implementation of the SM213 virtual machine. It executes sm213 machine code, but it doesn't include an assembler and it doesn't have a GUI. 
+As a result, it's a small C program that you should be able to read and understand.
+
+Since the C version doesn't contain an assembler, we'll need to use the Java version to convert assembly into machine code. 
+To do this, run the simulator from the command line using the -d option. For example, to convert foo.s into machine code type the following command:
+java -jar SimpleMachine213.jar -d foo.s
+
+The simulator places the resulting machine code in the file foo.s.machine. This machine code can be loaded into either the C SM213 implementation above or the existing Java simulator.
+The file sm213-programs.zip contains the following programs that have already been converted to machine code; i.e., you have .s and .s.machine versions of each of these programs.
+
+- simple-test: A very simple test that includes only two instructions.
+- test: A test that uses every instruction (except the double-indirect jumps).
+- a2-test: The test.s file from Assignment 2 that tests ALU and memory instructions.
+- max: Compute maximum value of a list of integers.
+
+Feel free to convert your own files to serve as test cases. When you run the C simulator you specify which file to execute and provide zero or more of the following command line options:
+
+1. -p a: Set the starting pc to address a (assumed to be in hex); default is first instruction.
+2. -r: Print the ending values of the register file.
+3. -m a:c: Print the ending value of memory at address a, continuing for c lines (4 bytes per line). This option can be repeated to print multiple non-contiguous memory regions.
+
+For example, to run foo.machine and print out the registers and memory locations 0x2000-0x2007, type the following at the command line: ./sm -r -m 2000:2 foo.s.machine
+Start by reading sm.c and figuring out how it all works. Examine the fetch() and exec() procedures in sm.c. 
+These are equivalent to the two functions in CPU.java. They execute in sequence each clock tick to fetch an instruction from memory and execute it. 
+Read exec() carefully. Note what mem[] and reg[] are. Pause to reflect on how simple and cool this is - it's emulating a virtual CPU, on your real CPU!
+
+To study how the compiler implements switch statements like those found in sm.c, copy this file to the file sm-jt.c and then modify sm-jt.c to remove all switch statements in the fetch() and exec() procedures, 
+replacing them with jump tables and gotos as described in class. Note that there are two levels of switch statements in the exec() procedure, so you will need two jump tables (or, a single large one covering every possible value for the first byte). 
+Also note that the fetch() switch is simple enough that an alternative, simpler version using if statements may be possible; you are allowed to use such an approach in the fetch() function.
+
+Note that label pointers (e.g., &&L0) and double-indirect gotos (e.g., goto *jt[i]) are GNU C extensions, and so some compilers may not support them (all versions of gcc and clang/llvm do support these extensions).
+
+Now, test your new jump-table-driven program. Start with simple-test.machine. 
+This test uses one instruction from each of the switch statements, so if it works you'll likely have got this mostly right. 
+You'll also want to use test.machine to ensure that you are dispatching to the correct case block for every instruction. 
+The easiest way to do this is to place a print statement in every case block and then run the test to ensure that every print statement executes, and that they execute in the correct order.
