@@ -1,0 +1,16 @@
+his new version is supposed to support integer and string elements. Carefully examine all the source code you’ve been given.
+
+We’ve provided a new version of the reference counting code. Our new version supports finalizers - bits of code that will execute when the reference-counted object is about to be destroyed. 
+These are implemented as function pointers stored in the "header" of the reference counter object, and are called automatically if the rc_free_ref function detects that the object must be freed. 
+You’ll need this feature in this assignment.
+
+element.h provides the interface for all elements - basically, a base class. 
+It has two concrete implementations: str_element and int_element. Your job is to provide the code for both subclasses. 
+You may only modify int_element.c and str_element.c. You can implement these any way you like, so long as you use the provided reference counting library.
+
+Work on your implementation step-by-step:
+
+1. First, comment out all the code in main() except for the call to test_int(). Implement enough of the int_element class such your program compiles, runs, and prints 42. 
+Test your code carefully, and run it through valgrind to make sure you have no leaks.
+2. Next, comment out everything in main() except test_str(). Start implementing the string class until it prints out Hello, World!. Run valgrind again to make sure you have no leaks.
+3. Implement the rest of the public interface for both classes, which includes the instance functions from element and the static functions listed in each header file.
