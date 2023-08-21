@@ -1,0 +1,18 @@
+Synchronization bugs introduce non-determinism into programs, which means that they may produce different results each time they are run, even on the exact same input. 
+This also means that a program with a synchronization bug might execute correctly sometimes, and so to be sure that your a program is bug free it is necessary to execute it many times. 
+You must take this step when testing your code for this assignment. 
+The Unix command-line shells provide ways to automate this task; you might find it useful to investigate how to do this.
+For example, in bash you can type this to execute the program q1 100 times:
+for n in {1..100}; do ./q1; done
+
+Or in zsh:
+repeat 100 ./q1
+
+Modify the program q1.c in a10.zip (see Question 1) by adding calls to uthread_join (and making no other changes) so that it always prints the lines zero to three in order; i.e., its output must always be the following:
+zero
+one
+two
+three
+------
+
+In order to receive full marks, you should ensure that your solution allows as many threads as possible to run concurrently.
