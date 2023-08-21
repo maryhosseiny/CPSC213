@@ -1,0 +1,10 @@
+In this assignment you will translate C programs that access arrays to assembly, investigate dynamic arrays and pointers in C, and work with C pointer arithmetic. 
+Here are the learning objectives of this assignment, which will be examined in this week’s quiz. They are a subset of the unit learning objectives listed on Canvas and Slide 2 of Unit 1b.
+
+After completing this assignment you should be able to:
+1. Translate between array-element offsets and indices.
+2. Distinguish static and dynamic computation for access to global scalars and arrays in C.
+3. Translate between C and assembly language for access to global scalars and arrays;
+4. Translate between C and assembly for code that performs simple arithmetic.
+5. Explain the difference between arrays in C and Java.
+6. Use C’s dereference and address-of operators and pointer arithmetic to access elements of arrays.
