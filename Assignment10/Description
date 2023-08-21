@@ -1,0 +1,10 @@
+The goal this assignment is to give you some experience writing concurrent programs. Writing concurrent code that works correctly is hard. 
+Debugging concurrent code that doesn't work correctly is much harder. These skills are becoming increasingly important. 
+This assignment introduces you to this set of challenges by having you solve several simple concurrent programming problems.
+
+You will solve well-known concurrency problems using threads, mutual exclusion locks and condition variables. 
+Some of these problems are classic toy problems used as thought experiments related to synchronization, from well-known Computer Scientists like Edsger Dijkstra and Allen B. Downey. 
+While these problems are toys, they were designed to model specific types of real-world synchronization problems that show up in real concurrent systems such as operating systems and video games.
+
+In each case your program will consist of a solution to the concurrency puzzle and a test harness that creates a set of threads to instrument your code to collect information that you can use to convince yourself (and us) that you have implemented the problem correctly. 
+Bugs will typically either be in the form of incorrect results (i.e., violating the stated constraints) or deadlock (i.e., your program hangs). The problems are kept as simple as possible.
