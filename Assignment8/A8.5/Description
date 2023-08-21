@@ -1,0 +1,25 @@
+In this question you will implement a program called trunc.c. 
+This program should have no loops of any kind, other than an initial loop to read the values of argv. 
+It will use the functions in the list.c file you implemented in the previous question to provide the functionality below.
+
+The input to this program is a list of numbers and strings presented on the command line; e.g.,
+./trunc 4 apple 3 peach 5 banana 2 3 grape plum
+
+The program uses the numbers to truncate corresponding strings and prints the resulting strings, one per line, followed by the string concatenated (and separated by spaces), and 
+finally the maximum string length. So in this case the output would be:
+appl
+pea
+banan
+gr
+plu
+appl pea banan gr plu
+5
+
+Notice that the numbers are paired with strings based on their order in the string, not their proximity to each other; so the following would produce the same final output:
+./trunc 4 3 5 2 3 apple peach banana grape plum
+
+Here is an outline of the program. You need to follow the steps listed. This will involve creating several functions to pass to the higher-order functions in list.h. 
+Take each step one at a time. Implement a step and then test it by using list_foreach to print the list you create (be sure to remove these extra prints, 
+however, before you handin your solution; the only prints allowed in the final version are those specified in Steps 7 through 9). 
+For string processing, you may use any standard library function that starts with str, for instance, strcpy, strncpy, strcmp, strdup, strcat, strtol, etc., 
+so you should not require any explicit loops to handle strings.
