@@ -1,0 +1,21 @@
+The file list.c contain the skeleton implementation of several list operators adapted from Racket: map1, map2, foldl, filter, and foreach. 
+The two map functions are variations on Racket's map: map1 operates on one list and map2 on two.
+
+Here's a brief summary of what these functions do. Note that in Racket these functions can receive multiple lists, but our version uses only one list (or two, for map2).
+
+map takes a function and one or two lists and generates a new list by applying the function to each element (or pair of equivalent elements) of the list(s);
+(map + '(1 2 3) '(1 1 1)) => '(2 3 4)
+
+foldl takes a function, an initial value, and a list and generates the value that results from iterating over the list, calling the function on an accumulated value, 
+which starts at the specified initial value, and each element of the list in turn, updating the accumulated value as it goes;
+(foldl + 0 '(1 2 3)) => 6
+
+filter takes a function and a list and generates a new list that contains the elements of the original list for which the function returns true;
+(filter positive? '(-2 3 -8 5)) => '(3 5)
+
+foreach takes a function and a list and calls the function for each item in the list. It produces no value. 
+(Note that the actual name of this function in Racket is for-each, but we are going to call it foreach since you can't have dashes in C names).
+(foreach print '(1 2 3)) => ; #<void> printing the values 1, 2 and 3
+
+Implement the TODO portions of list.c and use test.c, which uses these functions, to test your code. 
+Your code must pass valgrind with no memory leaks. Be sure to run it with a variety of inputs, include one with a long list of strings and integers (i.e., longer than 10 each).
