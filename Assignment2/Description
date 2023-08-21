@@ -1,0 +1,21 @@
+In this assignment you will begin exploring assembly language, its connection to C and to the processor that implements it. 
+The learning objectives of this assignment follow below and will be examined in this week’s quiz. They are a subset of the unit learning objectives listed on slide 2 of Unit 1b. 
+After completing this assignment you should be able to:
+1. identify and describe the basic components of a machine instruction;
+2. outline the steps a RISC machine performs to do arithmetic on numbers stored in memory;
+3. distinguish static and dynamic computation for access to global scalars and arrays in C; and
+4. translate between C and assembly language for access to global scalars and arrays.
+
+You will begin by examining the Java/C/assembly code snippets we discuss in class this week. 
+They show the allocation of and access to a global int and a global array of ints. 
+Then, using this assembly code as a template, you will write a couple of very small bits of assembly code. 
+In each case, you will execute this code in the reference-implementation version of the simulator (i.e., the solution) and examine carefully how its execution affects the register file and main memory.
+
+Then, you will dig into the implementation of the processor. 
+You will implement a significant subset of the SM213 ISA we are developing in class: the memory-access and arithmetic instructions that are listed below. 
+You will test your implementation using the test program provided with the assignment.
+By implementing these instructions in the simulator you will see what is required to build them in hardware and you will deepen your understanding of what a global variable is, what memory is, and what role the compiler and hardware play in implementing them.
+
+A key thing to think about while doing this is: “what does the compiler know about these variables?” and so what can the compiler hard-code in the machine code it generates. 
+For global variables, recall that the compiler knows their address. And so the address of a global variable is hard-coded in the instructions that access it. 
+But, the compiler does not know the address of a dynamic array and so, even though it knows the address of the variable that stores the array reference, it must generate code to read the array’s address from memory when the program runs.
