@@ -1,0 +1,13 @@
+In this assignment you will learn more about structs in C and how they are implemented by the compiler. You will:
+1. Learn how to debug a simple C program
+2. Convert a small Java program to C with structs
+3. Convert a small C program to assembly
+
+After completing this assignment you should be able to:
+1. read and write C code that includes structs
+2. compare Java classes/objects with C structs
+3. explain the difference between static and non-static variables in Java and C
+4. distinguish static and dynamic computation for access to members of a static struct variable in C
+5. distinguish static and dynamic computation for access to members of a non-static struct variable in C
+6. translate C struct-access code into assembly language
+7. count memory references required to access struct elements
