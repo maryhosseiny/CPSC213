@@ -1,0 +1,9 @@
+In this assignment you will:
+
+1. Examine how procedures and procedure calls are implemented in assembly language
+2. Mount a buffer-overflow, stack-smash attack on a SM213 program.
+
+After completing this assignment you should be able to:
+
+1. Write assembly code that uses system calls
+2. Describe how a buffer-overflow, stack-smash attack occurs
