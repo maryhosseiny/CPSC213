@@ -1,0 +1,3 @@
+ use a mutex and one or more condition variables to order the threads to produce the same output as your solution to the first question, where you ordered threads using uthread_join. 
+ Your solution must use condition variables to order the threads and it must never deadlock. 
+ A correct solution must consider both the issue illustrated by the previous question (rendezvous) and also the ordering constraints on calls to signal (or broadcast) and wait.
