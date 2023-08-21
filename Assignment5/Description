@@ -1,0 +1,10 @@
+In this assignment you will get additional practice reading assembly code, figuring out which C program it came from, and counting memory references. 
+You will also examine dynamic allocation and de-allocation in C, paying particular attention to dangling pointers, memory leaks, and how to avoid them. You will:
+1. Read assembly code and convert it to C
+2. Implement a memory allocator
+3. Examine a program with a dangling pointer bug
+
+After completing this assignment you should be able to:
+1. Identify and correct dangling-pointer and memory leak bugs in C caused by improper use of free()
+2. Write C code that uses techniques that avoid dynamic allocation as a way to minimize memory-allocation bugs
+3. Write C code that uses reference counting as a way to minimize memory-allocation bugs.
