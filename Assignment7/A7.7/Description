@@ -1,0 +1,19 @@
+Your first task as an Evil Hacker™ is to develop your very own shellcode. Shellcode is binary code that, when executed by a CPU, uses a system call to launch an interactive shell, giving an attacker free rein over the system. Thus, the ultimate goal of an attacker is to inject their shellcode into a program and get it to run.
+
+On UNIX systems, like the Linux student servers, the shell program is named /bin/sh. Therefore, you will develop a piece of code that will execute this program.
+
+Shellcode, when executing, cannot make any assumptions about the environment (e.g. it cannot rely on any data already in memory besides itself). This can make developing shellcode challenging.
+
+Follow these steps to produce your very own shellcode.
+
+1. Write a piece of assembly code that uses system call sys $2 (exec) to launch /bin/sh. Refer to the examples to see how the system call works. Note that your shellcode must work no matter what address it is loaded at, so your code must not use .pos in your code, and cannot load or use any absolute addresses (the gpc instruction may come in handy, though it may be used for a purpose other than what we've proposed so far). Test your shellcode in the simulator to make sure it works. Save this assembly code as shellcode.s.
+2. Convert your assembly code into hexadecimal machine code by following the instruction formats for each instruction. For example, you would translate the instruction mov r1, r2 to 6012. Save the hexadecimal code in a text file called shellcode.hex. Important: the file cannot contain anything besides hexadecimal digits and whitespace (newlines and spaces, which can be used to help you keep track of the code).
+
+The provided assembly program test.s reads input using the read system call (sys $0), then executes it as code. You can play with this in the simulator, inputting your hexadecimal machine code by checking the "Hex Input" checkbox. Using "Send and Halt", you can stop the processor right after reading in the shellcode, allowing you to step through it.
+
+Once you are satisfied with your shellcode, try it against the CLI simulator. Use xxd to convert your hexadecimal code into binary and send it into the simulator's input as follows:
+
+xxd -r -p shellcode.hex | java -jar SimpleMachine213.jar -i cli test.s
+If your shellcode worked, this should print "<<<WOULD EXECUTE /bin/sh>>>", indicating that your shellcode would have successfully launched a shell.
+
+If you succeeded in the steps above, submit your original assembly code as shellcode.s and your hexadecimal machine code as shellcode.hex for this part of the assignment.
